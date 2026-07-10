@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>水の中から、自信が育つ | 子ども向け水泳レッスン</title>
+    <meta
+      name="description"
+      content="年長から中学1年生までの子どもに向けた、水への安心感と自信を育む水泳レッスンです。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body class="auth-locked">
+    <section class="auth-gate" data-auth-gate aria-labelledby="auth-title">
+      <div class="auth-card">
+        <p class="eyebrow">PRIVATE PREVIEW</p>
+        <h1 id="auth-title">閲覧用ログイン</h1>
+        <p class="auth-lead">制作確認用の簡易ログインです。</p>
+        <form class="auth-form" data-auth-form>
+          <div class="form-field">
+            <label for="auth-id">ID</label>
+            <input id="auth-id" name="id" type="text" autocomplete="username" required />
+          </div>
+          <div class="form-field">
+            <label for="auth-password">パスワード</label>
+            <input id="auth-password" name="password" type="password" autocomplete="current-password" required />
+          </div>
+          <button class="form-submit auth-submit" type="submit">サイトを見る <span aria-hidden="true">↗</span></button>
+          <p class="auth-status" data-auth-status aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <div class="scroll-meter" aria-hidden="true"><span></span></div>
+
+    <header class="site-header" data-header>
+      <a class="brand" href="#top" aria-label="トップへ">
+        <span class="brand-mark" aria-hidden="true">○</span>
+        <span>SWIM<br />WITH CONFIDENCE</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="main-navigation"
+        data-menu-toggle
+      >
+        <span>MENU</span>
+        <i aria-hidden="true"></i>
+      </button>
+
+      <nav class="main-nav" id="main-navigation" aria-label="ページ内ナビゲーション" data-navigation>
+        <a href="#message">想い</a>
+        <a href="#features">特徴</a>
+        <a href="#assurance">安心の理由</a>
+        <a href="#flow">流れ</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <a class="header-cta" href="#contact">相談する <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-photo" data-parallax="0.12">
+          <img src="./images/sample_2.jpg" alt="プールで楽しそうに遊ぶ子ども" fetchpriority="high" />
+        </div>
+        <div class="hero-aqua" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <p class="eyebrow hero-reveal">CHILDREN'S SWIM LESSON</p>
+          <h1 id="hero-title" class="hero-title" data-hero-title>
+            <span>水の中から、</span>
+            <span>自信が育つ。</span>
+          </h1>
+          <p class="hero-lead hero-reveal">
+            怖さを小さな「できた」に変えながら、
+            自分のペースで水と仲良くなるレッスンです。
+          </p>
+        </div>
+        <dl class="hero-facts hero-reveal" aria-label="レッスン概要">
+          <div><dt>AGE</dt><dd>年長〜中学1年生</dd></div>
+          <div><dt>GOAL</dt><dd>水慣れ・苦手克服・泳力向上</dd></div>
+        </dl>
+        <a class="scroll-cue" href="#message" aria-label="想いへスクロール">
+          <span>SCROLL TO DISCOVER</span><i aria-hidden="true"></i>
+        </a>
+        <svg class="hero-line" viewBox="0 0 1440 420" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M-40 245C266 80 596 365 923 220S1326 76 1495 155" />
+        </svg>
+      </section>
+
+      <section id="message" class="message section" aria-labelledby="message-title">
+        <div class="section-top reveal">
+          <p class="eyebrow">OUR MESSAGE</p>
+          <p class="section-number" aria-hidden="true">01</p>
+        </div>
+        <div class="message-grid">
+          <div class="message-title-wrap reveal">
+            <h2 id="message-title">泳げることだけが、<br />ゴールじゃない。</h2>
+            <p>
+              水に顔をつけられた。浮く感覚が分かった。<br />
+              ひとつずつの小さな成功が、次の挑戦への力になる。
+            </p>
+          </div>
+          <figure class="message-photo message-photo-main reveal" data-parallax="0.07">
+            <img src="./images/sample_1.jpg" alt="プールの中を泳ぐ子どもたち" loading="lazy" />
+          </figure>
+          <figure class="message-photo message-photo-small reveal" data-parallax="0.04">
+            <img src="./images/sample_3.jpg" alt="プールサイドで水に足を入れる子どもたち" loading="lazy" />
+          </figure>
+        </div>
+        <p class="message-caption reveal">FROM "I CAN'T" TO "I DID IT"</p>
+      </section>
+
+      <section id="features" class="features" aria-labelledby="features-title">
+        <div class="features-heading section">
+          <p class="eyebrow reveal">WHAT WE VALUE</p>
+          <h2 id="features-title" class="reveal">水と仲良くなる、<br />3つのステップ。</h2>
+        </div>
+
+        <article class="feature feature-one section">
+          <div class="feature-photo reveal" data-parallax="0.1">
+            <img src="./images/sample_2.jpg" alt="水遊びを楽しむ子ども" loading="lazy" />
+          </div>
+          <div class="feature-copy reveal">
+            <p class="feature-index">01 <span>FEEL SAFE</span></p>
+            <h3>水への不安を、<br />少しずつ小さく。</h3>
+            <p>顔つけ、浮く感覚、息つぎ。つまずきやすいポイントを分けて、一人ひとりに合う順番で進めます。</p>
+          </div>
+        </article>
+
+        <article class="feature feature-two section">
+          <div class="feature-copy reveal">
+            <p class="feature-index">02 <span>KEEP TRYING</span></p>
+            <h3>「できた」を、<br />何度も味わう。</h3>
+            <p>いきなり長く泳ぐことは目指しません。達成しやすい目標を置き、自分の成長を感じられる時間にします。</p>
+          </div>
+          <div class="feature-photo reveal" data-parallax="0.08">
+            <img src="./images/sample_1.jpg" alt="水中を泳ぐ子どもたち" loading="lazy" />
+          </div>
+        </article>
+
+        <article class="feature feature-three section">
+          <div class="feature-photo reveal" data-parallax="0.11">
+            <img src="./images/sample_3.jpg" alt="プールサイドで過ごす子どもたち" loading="lazy" />
+          </div>
+          <div class="feature-copy reveal">
+            <p class="feature-index">03 <span>GROW TOGETHER</span></p>
+            <h3>保護者にも、<br />成長が伝わる。</h3>
+            <p>レッスン後にはその日の様子と次のポイントを共有。ご家庭でも、成長を一緒に見守れます。</p>
+          </div>
+        </article>
+      </section>
+
+      <section id="assurance" class="assurance section" aria-labelledby="assurance-title">
+        <div class="assurance-intro reveal">
+          <p class="eyebrow">FOR PARENTS</p>
+          <h2 id="assurance-title">任せやすさも、<br />見える形に。</h2>
+          <p>お子さまの状態を見ながら、無理なく進めることを大切にします。</p>
+        </div>
+        <dl class="assurance-list">
+          <div class="reveal"><dt>対象</dt><dd>年長〜中学1年生</dd></div>
+          <div class="reveal"><dt>目的</dt><dd>水慣れ・苦手克服<br />泳力向上</dd></div>
+          <div class="reveal"><dt>共有</dt><dd>レッスン後の振り返り</dd></div>
+        </dl>
+        <div class="assurance-orbit" aria-hidden="true"><span>SAFE</span><span>FUN</span><span>STEP BY STEP</span></div>
+      </section>
+
+      <section id="flow" class="flow section" aria-labelledby="flow-title">
+        <div class="flow-heading reveal">
+          <p class="eyebrow">HOW IT WORKS</p>
+          <h2 id="flow-title">はじめるまでの流れ</h2>
+        </div>
+        <ol class="flow-list">
+          <li class="reveal"><span>01</span><h3>相談する</h3><p>年齢、泳力、気になることを教えてください。</p></li>
+          <li class="reveal"><span>02</span><h3>事前ヒアリング</h3><p>目標や水への不安を確認し、進め方を考えます。</p></li>
+          <li class="reveal"><span>03</span><h3>レッスン</h3><p>安全を優先して、できることを一つずつ増やします。</p></li>
+          <li class="reveal"><span>04</span><h3>振り返り</h3><p>その日の成長と次回のポイントを共有します。</p></li>
+        </ol>
+      </section>
+
+      <section id="faq" class="faq section" aria-labelledby="faq-title">
+        <div class="faq-heading reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2 id="faq-title">よくある質問</h2>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item reveal" open>
+            <summary>水が苦手でも参加できますか？ <span aria-hidden="true">＋</span></summary>
+            <p>参加できます。水に慣れるところから始め、怖さが強い場合は無理に泳がせず、段階を分けて進めます。</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>対象年齢はどのくらいですか？ <span aria-hidden="true">＋</span></summary>
+            <p>年長から中学1年生までを対象にしています。実際の状態や目標に合わせて、内容を考えます。</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>保護者は見学できますか？ <span aria-hidden="true">＋</span></summary>
+            <p>会場のルールに合わせてご案内します。見学が難しい場合も、レッスン後に内容と次回のポイントを共有します。</p>
+          </details>
+        </div>
+      </section>
+
+      <section id="contact" class="contact section" aria-labelledby="contact-title">
+        <div class="contact-photo" data-parallax="0.06">
+          <img src="./images/sample_2.jpg" alt="プールで笑顔を見せる子ども" loading="lazy" />
+        </div>
+        <div class="contact-shell">
+          <div class="contact-copy reveal">
+            <p class="eyebrow">LET'S TALK</p>
+            <h2 id="contact-title">まずは、<br />気軽に相談<br />してください。</h2>
+            <p>「水が怖い」「授業までに少し慣れたい」「もっと泳げるようになりたい」。今の気持ちを聞かせてください。</p>
+            <p id="contact-form-note" class="contact-note">※ フォーム内容・送信先は公開時に設定します。</p>
+          </div>
+
+          <form class="contact-form reveal" data-contact-form aria-describedby="contact-form-note">
+            <p class="form-kicker">CONTACT FORM</p>
+            <div class="form-field">
+              <label for="contact-name">お名前 <span aria-hidden="true">*</span></label>
+              <input id="contact-name" name="name" type="text" autocomplete="name" placeholder="山田 花子" required aria-required="true" />
+            </div>
+            <div class="form-field">
+              <label for="contact-grade">お子さまの学年</label>
+              <input id="contact-grade" name="grade" type="text" placeholder="小学2年生" />
+            </div>
+            <div class="form-field">
+              <label for="contact-email">メールアドレス <span aria-hidden="true">*</span></label>
+              <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="example@email.com" required aria-required="true" />
+            </div>
+            <div class="form-field">
+              <label for="contact-message">相談内容 <span aria-hidden="true">*</span></label>
+              <textarea id="contact-message" name="message" rows="4" placeholder="水に顔をつけるのが苦手です。" required aria-required="true"></textarea>
+            </div>
+            <button class="form-submit" type="submit">相談内容を送る <span aria-hidden="true">↗</span></button>
+            <p class="form-status" data-form-status aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand footer-brand" href="#top"><span class="brand-mark" aria-hidden="true">○</span><span>SWIM<br />WITH CONFIDENCE</span></a>
+      <p>水の中から、自信が育つ。<br />子ども向け水泳レッスン</p>
+      <small>© 2026 SWIM WITH CONFIDENCE</small>
+    </footer>
+
+    <script src="./js/script.js"></script>
+  </body>
+</html>
