@@ -3,15 +3,15 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>水の中から、自信が育つ | 子ども向け水泳レッスン</title>
+    <title>遊びの中から、自信が育つ。 | 保護者のための遊び運動レッスン</title>
     <meta
       name="description"
-      content="年長から中学1年生までの子どもに向けた、水への安心感と自信を育む水泳レッスンです。"
+      content="年長から中学1年生までのお子さまを持つ保護者に向けた、屋外での遊び運動レッスンです。遊びと挑戦を通じて、心と体の成長を応援します。"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./css/styles.css" />
@@ -38,11 +38,14 @@
     </section>
 
     <div class="scroll-meter" aria-hidden="true"><span></span></div>
+    <button class="back-to-top" type="button" data-back-to-top aria-label="ページ上部へ戻る">
+      <span aria-hidden="true">↑</span>
+    </button>
 
     <header class="site-header" data-header>
       <a class="brand" href="#top" aria-label="トップへ">
-        <span class="brand-mark" aria-hidden="true">○</span>
-        <span>SWIM<br />WITH CONFIDENCE</span>
+        <img class="brand-mark" src="./images/brand-mark.svg" alt="" aria-hidden="true" />
+        <span>SOTO ASOBI<br />PLAY &amp; MOVE</span>
       </a>
 
       <button
@@ -58,131 +61,178 @@
 
       <nav class="main-nav" id="main-navigation" aria-label="ページ内ナビゲーション" data-navigation>
         <a href="#message">想い</a>
-        <a href="#features">特徴</a>
-        <a href="#assurance">安心の理由</a>
-        <a href="#flow">流れ</a>
-        <a href="#faq">FAQ</a>
+        <a href="#features">育まれること</a>
+        <a href="#program">活動内容</a>
+        <a href="#instructor">講師について</a>
+        <a href="#faq">よくある質問</a>
       </nav>
 
-      <a class="header-cta" href="#contact">相談する <span aria-hidden="true">↗</span></a>
+      <a class="header-cta" href="#contact">ご相談はこちら <span aria-hidden="true">↗</span></a>
     </header>
 
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-photo" data-parallax="0.12">
-          <img src="./images/sample_2.jpg" alt="プールで楽しそうに遊ぶ子ども" fetchpriority="high" />
+        <div class="hero-photo" data-parallax="0.12" aria-hidden="true">
+          <img class="hero-slide is-active" src="./images/KV_1.jpg" alt="" fetchpriority="high" />
+          <img class="hero-slide" src="./images/KV_2.jpg" alt="" />
+          <img class="hero-slide" src="./images/KV_3.jpg" alt="" />
         </div>
-        <div class="hero-aqua" aria-hidden="true"></div>
-        <div class="hero-copy">
-          <p class="eyebrow hero-reveal">CHILDREN'S SWIM LESSON</p>
+        <div class="hero-content">
+          <p class="eyebrow hero-reveal">FOR PARENTS / OUTDOOR PLAY &amp; MOVEMENT</p>
           <h1 id="hero-title" class="hero-title" data-hero-title>
-            <span>水の中から、</span>
+            <span>遊びの中から、</span>
             <span>自信が育つ。</span>
           </h1>
           <p class="hero-lead hero-reveal">
-            怖さを小さな「できた」に変えながら、
-            自分のペースで水と仲良くなるレッスンです。
+            お子さまが自分のペースで遊び、挑戦し、
+            「やってみたい」を育てていく時間をつくります。
+            保護者の方にも、安心して見守っていただける活動です。
           </p>
+          <dl class="hero-facts hero-reveal" aria-label="活動概要">
+            <div><dt>AGE</dt><dd>年長〜中学1年生</dd></div>
+            <div><dt>PLACE</dt><dd>公園・広場などの屋外</dd></div>
+          </dl>
+          <a class="scroll-cue hero-reveal" href="#message" aria-label="想いへスクロール">
+            <span>SCROLL TO DISCOVER</span><i aria-hidden="true"></i>
+          </a>
         </div>
-        <dl class="hero-facts hero-reveal" aria-label="レッスン概要">
-          <div><dt>AGE</dt><dd>年長〜中学1年生</dd></div>
-          <div><dt>GOAL</dt><dd>水慣れ・苦手克服・泳力向上</dd></div>
-        </dl>
-        <a class="scroll-cue" href="#message" aria-label="想いへスクロール">
-          <span>SCROLL TO DISCOVER</span><i aria-hidden="true"></i>
-        </a>
-        <svg class="hero-line" viewBox="0 0 1440 420" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M-40 245C266 80 596 365 923 220S1326 76 1495 155" />
-        </svg>
+        <p class="hero-pagination" data-hero-pagination aria-hidden="true"><span>01</span> / 03</p>
       </section>
 
       <section id="message" class="message section" aria-labelledby="message-title">
-        <div class="section-top reveal">
-          <p class="eyebrow">OUR MESSAGE</p>
-          <p class="section-number" aria-hidden="true">01</p>
+        <div class="message-heading reveal">
+          <img class="grass-accent" src="./images/grass-accent.svg" alt="" aria-hidden="true" />
+          <p class="eyebrow">MESSAGE</p>
+          <h2 id="message-title" class="sr-only">想い</h2>
         </div>
-        <div class="message-grid">
-          <div class="message-title-wrap reveal">
-            <h2 id="message-title">泳げることだけが、<br />ゴールじゃない。</h2>
+        <div class="message-showcase">
+          <div class="message-content reveal">
+            <div class="message-title-row">
+              <h3>遊ぶことは、育つこと。</h3>
+            </div>
             <p>
-              水に顔をつけられた。浮く感覚が分かった。<br />
-              ひとつずつの小さな成功が、次の挑戦への力になる。
+              子どもにとって遊びは、ただ楽しいだけの時間ではありません。走る、投げる、バランスを取る。友だちを待つ、声を掛ける、もう一度挑戦する。外でのびのび動くなかには、心と体を育てるたくさんのきっかけがあります。
             </p>
+            <p>
+              私たちは、できる・できないで急かすのではなく、その子らしい一歩を見つけることを大切にしています。小さな「できた」を重ねながら、挑戦することが楽しみになる時間をつくります。
+            </p>
+            <a class="message-cta" href="#contact">ご相談はこちら <span aria-hidden="true">↗</span></a>
           </div>
-          <figure class="message-photo message-photo-main reveal" data-parallax="0.07">
-            <img src="./images/sample_1.jpg" alt="プールの中を泳ぐ子どもたち" loading="lazy" />
+          <figure class="message-photo message-photo-one reveal" data-parallax="0.04">
+            <img src="./images/image_1.jpg" alt="公園の遊具の前で集まる講師と子どもたち" loading="lazy" />
           </figure>
-          <figure class="message-photo message-photo-small reveal" data-parallax="0.04">
-            <img src="./images/sample_3.jpg" alt="プールサイドで水に足を入れる子どもたち" loading="lazy" />
+          <figure class="message-photo message-photo-two reveal" data-parallax="0.03">
+            <img src="./images/image_2.jpg" alt="講師と子どもたちが公園で記念写真を撮る様子" loading="lazy" />
+          </figure>
+          <figure class="message-photo message-photo-three reveal" data-parallax="0.05">
+            <img src="./images/image_3.jpg" alt="芝生で講師と子どもたちが集まる様子" loading="lazy" />
+          </figure>
+          <figure class="message-photo message-photo-four reveal" data-parallax="0.06">
+            <img src="./images/image_4.jpg" alt="芝生の上を元気に走る子どもたち" loading="lazy" />
           </figure>
         </div>
-        <p class="message-caption reveal">FROM "I CAN'T" TO "I DID IT"</p>
       </section>
 
       <section id="features" class="features" aria-labelledby="features-title">
         <div class="features-heading section">
           <p class="eyebrow reveal">WHAT WE VALUE</p>
-          <h2 id="features-title" class="reveal">水と仲良くなる、<br />3つのステップ。</h2>
+          <h2 id="features-title" class="reveal">外で遊ぶ時間が、<br />心と体を育てる。</h2>
+          <p class="features-intro reveal">運動が得意な子も、少し苦手意識がある子も。一人ひとりが安心して参加し、自分なりの楽しさを見つけられるように活動します。</p>
         </div>
 
         <article class="feature feature-one section">
           <div class="feature-photo reveal" data-parallax="0.1">
-            <img src="./images/sample_2.jpg" alt="水遊びを楽しむ子ども" loading="lazy" />
+            <img src="./images/image_4.jpg" alt="広い芝生を走る子どもたち" loading="lazy" />
           </div>
           <div class="feature-copy reveal">
-            <p class="feature-index">01 <span>FEEL SAFE</span></p>
-            <h3>水への不安を、<br />少しずつ小さく。</h3>
-            <p>顔つけ、浮く感覚、息つぎ。つまずきやすいポイントを分けて、一人ひとりに合う順番で進めます。</p>
+            <p class="feature-index">01 <span>MOVE FREELY</span></p>
+            <h3>体を動かすことを、<br />好きになる。</h3>
+            <p>走る、跳ぶ、くぐる、投げる。遊びのなかでさまざまな動きに触れながら、自分の体を思いどおりに使う感覚を育てます。</p>
+            <p>うまくできることよりも、まずは「動くって楽しい」と感じること。その気持ちが、次の挑戦への原動力になります。</p>
           </div>
         </article>
 
         <article class="feature feature-two section">
           <div class="feature-copy reveal">
-            <p class="feature-index">02 <span>KEEP TRYING</span></p>
-            <h3>「できた」を、<br />何度も味わう。</h3>
-            <p>いきなり長く泳ぐことは目指しません。達成しやすい目標を置き、自分の成長を感じられる時間にします。</p>
+            <p class="feature-index">02 <span>TRY AGAIN</span></p>
+            <h3>自分で決めて、<br />何度でも挑戦する。</h3>
+            <p>少し高いところに登ってみる。もう一度走ってみる。遊びのなかで生まれる「やってみたい」を、急かさず受け止めます。</p>
+            <p>失敗しても大丈夫と思える安心感があるからこそ、子どもたちは自分のペースで新しい一歩を踏み出せます。</p>
           </div>
           <div class="feature-photo reveal" data-parallax="0.08">
-            <img src="./images/sample_1.jpg" alt="水中を泳ぐ子どもたち" loading="lazy" />
+            <img src="./images/image_1.jpg" alt="公園の遊具で遊ぶ子どもたち" loading="lazy" />
           </div>
         </article>
 
         <article class="feature feature-three section">
           <div class="feature-photo reveal" data-parallax="0.11">
-            <img src="./images/sample_3.jpg" alt="プールサイドで過ごす子どもたち" loading="lazy" />
+            <img src="./images/image_2.jpg" alt="講師と子どもたちが公園で記念写真を撮る様子" loading="lazy" />
           </div>
           <div class="feature-copy reveal">
             <p class="feature-index">03 <span>GROW TOGETHER</span></p>
-            <h3>保護者にも、<br />成長が伝わる。</h3>
-            <p>レッスン後にはその日の様子と次のポイントを共有。ご家庭でも、成長を一緒に見守れます。</p>
+            <h3>仲間と過ごすなかで、<br />やさしさも育てる。</h3>
+            <p>順番を待つ、応援する、できたことを一緒に喜ぶ。ひとりでは味わえない経験が、友だちとの関わり方や相手を思う気持ちにつながります。</p>
+            <p>講師も一緒に遊び、見守りながら、子どもたちの小さな変化を丁寧に受け止めます。</p>
           </div>
         </article>
+      </section>
+
+      <section id="program" class="program section" aria-labelledby="program-title">
+        <div class="program-heading reveal">
+          <p class="eyebrow">ACTIVITY</p>
+          <h2 id="program-title">今日の「やってみたい」が、<br />次の自信になる。</h2>
+          <p>公園や広場という開かれた場所で、その日の子どもたちの様子や季節に合わせて活動を組み立てます。決まった正解を教えるだけではなく、遊びの中にある発見や挑戦を一緒に広げていきます。</p>
+        </div>
+        <div class="program-grid">
+          <article class="program-card reveal"><span>01</span><h3>からだを目覚めさせる</h3><p>鬼ごっこや簡単なゲームで、楽しく体を動かす準備をします。初めての場所でも自然に輪に入れる時間です。</p></article>
+          <article class="program-card reveal"><span>02</span><h3>遊びながら挑戦する</h3><p>走る、跳ぶ、バランスを取るなど、遊びのルールに沿ってさまざまな動きを試します。一人ひとりの「やってみたい」を尊重します。</p></article>
+          <article class="program-card reveal"><span>03</span><h3>できたことを振り返る</h3><p>活動の終わりには、頑張ったことや楽しかったことを言葉にします。次に挑戦したいことも一緒に見つけます。</p></article>
+        </div>
+      </section>
+
+      <section id="instructor" class="instructor section" aria-labelledby="instructor-title">
+        <div class="instructor-photo reveal" data-parallax="0.06">
+          <img src="./images/image_3.jpg" alt="子どもたちと一緒に笑う講師" loading="lazy" />
+        </div>
+        <div class="instructor-copy reveal">
+          <p class="eyebrow">INSTRUCTOR</p>
+          <h2 id="instructor-title">子どもの「今」を見て、<br />一緒に遊ぶ。</h2>
+          <p>子どもたちが安心して自分らしくいられること。そのうえで、少しだけ背中を押し、新しい挑戦を一緒に楽しむことを大切にしています。</p>
+          <p>活動中は、できたことだけでなく、迷っていたこと、頑張っていたこと、友だちに見せたやさしさにも目を向けます。保護者の方にもその日の様子を丁寧にお伝えし、成長を一緒に見守ります。</p>
+          <dl class="instructor-values">
+            <div><dt>01</dt><dd>一人ひとりのペースを大切にする</dd></div>
+            <div><dt>02</dt><dd>安全に配慮しながら、挑戦を応援する</dd></div>
+            <div><dt>03</dt><dd>保護者の方との対話を大切にする</dd></div>
+          </dl>
+        </div>
       </section>
 
       <section id="assurance" class="assurance section" aria-labelledby="assurance-title">
         <div class="assurance-intro reveal">
           <p class="eyebrow">FOR PARENTS</p>
-          <h2 id="assurance-title">任せやすさも、<br />見える形に。</h2>
-          <p>お子さまの状態を見ながら、無理なく進めることを大切にします。</p>
+          <h2 id="assurance-title">安心して、<br />送り出せる時間に。</h2>
+          <p>初めて参加される保護者の方にも、活動の様子や準備するものが分かりやすく伝わるようにしています。</p>
         </div>
         <dl class="assurance-list">
           <div class="reveal"><dt>対象</dt><dd>年長〜中学1年生</dd></div>
-          <div class="reveal"><dt>目的</dt><dd>水慣れ・苦手克服<br />泳力向上</dd></div>
-          <div class="reveal"><dt>共有</dt><dd>レッスン後の振り返り</dd></div>
+          <div class="reveal"><dt>場所</dt><dd>公園・広場などの屋外</dd></div>
+          <div class="reveal"><dt>配慮</dt><dd>一人ひとりの様子を見ながら、無理なく進めます</dd></div>
+          <div class="reveal"><dt>共有</dt><dd>活動後に、その日の様子をお伝えします</dd></div>
         </dl>
-        <div class="assurance-orbit" aria-hidden="true"><span>SAFE</span><span>FUN</span><span>STEP BY STEP</span></div>
+        <div class="assurance-orbit" aria-hidden="true"><span>SAFE</span><span>FUN</span><span>TOGETHER</span></div>
       </section>
 
       <section id="flow" class="flow section" aria-labelledby="flow-title">
         <div class="flow-heading reveal">
           <p class="eyebrow">HOW IT WORKS</p>
           <h2 id="flow-title">はじめるまでの流れ</h2>
+          <p>気になることやお子さまの様子を、まずは気軽にお聞かせください。</p>
         </div>
         <ol class="flow-list">
-          <li class="reveal"><span>01</span><h3>相談する</h3><p>年齢、泳力、気になることを教えてください。</p></li>
-          <li class="reveal"><span>02</span><h3>事前ヒアリング</h3><p>目標や水への不安を確認し、進め方を考えます。</p></li>
-          <li class="reveal"><span>03</span><h3>レッスン</h3><p>安全を優先して、できることを一つずつ増やします。</p></li>
-          <li class="reveal"><span>04</span><h3>振り返り</h3><p>その日の成長と次回のポイントを共有します。</p></li>
+          <li class="reveal"><span>01</span><h3>相談する</h3><p>年齢、普段の様子、気になることを教えてください。</p></li>
+          <li class="reveal"><span>02</span><h3>事前に確認する</h3><p>活動内容や場所など、参加前に知りたいことをご案内します。</p></li>
+          <li class="reveal"><span>03</span><h3>一緒に遊ぶ</h3><p>お子さまのペースを大切にしながら、思いきり体を動かします。</p></li>
+          <li class="reveal"><span>04</span><h3>様子を共有する</h3><p>その日の挑戦や成長を、保護者の方へお伝えします。</p></li>
         </ol>
       </section>
 
@@ -193,29 +243,33 @@
         </div>
         <div class="faq-list">
           <details class="faq-item reveal" open>
-            <summary>水が苦手でも参加できますか？ <span aria-hidden="true">＋</span></summary>
-            <p>参加できます。水に慣れるところから始め、怖さが強い場合は無理に泳がせず、段階を分けて進めます。</p>
+            <summary>運動が苦手でも参加できますか？ <span aria-hidden="true">＋</span></summary>
+            <p>もちろんです。得意・不得意で分けるのではなく、一人ひとりが楽しめることや挑戦できることを見つけながら進めます。</p>
           </details>
           <details class="faq-item reveal">
             <summary>対象年齢はどのくらいですか？ <span aria-hidden="true">＋</span></summary>
-            <p>年長から中学1年生までを対象にしています。実際の状態や目標に合わせて、内容を考えます。</p>
+            <p>年長から中学1年生までを対象にしています。お子さまの様子や目的に合わせて、活動についてご案内します。</p>
           </details>
           <details class="faq-item reveal">
-            <summary>保護者は見学できますか？ <span aria-hidden="true">＋</span></summary>
-            <p>会場のルールに合わせてご案内します。見学が難しい場合も、レッスン後に内容と次回のポイントを共有します。</p>
+            <summary>何を持って行けばよいですか？ <span aria-hidden="true">＋</span></summary>
+            <p>動きやすい服装、飲み物、帽子などを基本に、活動内容や季節に合わせて事前にご案内します。</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>雨の日はどうなりますか？ <span aria-hidden="true">＋</span></summary>
+            <p>天候による開催可否や対応については、事前に分かりやすくお知らせします。まずはお問い合わせ時にご確認ください。</p>
           </details>
         </div>
       </section>
 
       <section id="contact" class="contact section" aria-labelledby="contact-title">
-        <div class="contact-photo" data-parallax="0.06">
-          <img src="./images/sample_2.jpg" alt="プールで笑顔を見せる子ども" loading="lazy" />
+        <div class="contact-photo" data-parallax="0.05">
+          <img src="./images/image_1.jpg" alt="公園で活動する講師と子どもたち" loading="lazy" />
         </div>
         <div class="contact-shell">
           <div class="contact-copy reveal">
             <p class="eyebrow">LET'S TALK</p>
             <h2 id="contact-title">まずは、<br />気軽に相談<br />してください。</h2>
-            <p>「水が怖い」「授業までに少し慣れたい」「もっと泳げるようになりたい」。今の気持ちを聞かせてください。</p>
+            <p>「外で思いきり遊ばせたい」「運動を好きになってほしい」「初めてでも大丈夫かな」。どんな小さなことでも、まずは聞かせてください。</p>
             <p id="contact-form-note" class="contact-note">※ フォーム内容・送信先は公開時に設定します。</p>
           </div>
 
@@ -235,7 +289,7 @@
             </div>
             <div class="form-field">
               <label for="contact-message">相談内容 <span aria-hidden="true">*</span></label>
-              <textarea id="contact-message" name="message" rows="4" placeholder="水に顔をつけるのが苦手です。" required aria-required="true"></textarea>
+              <textarea id="contact-message" name="message" rows="4" placeholder="外遊びが好きな子に合う活動を知りたいです。" required aria-required="true"></textarea>
             </div>
             <button class="form-submit" type="submit">相談内容を送る <span aria-hidden="true">↗</span></button>
             <p class="form-status" data-form-status aria-live="polite"></p>
@@ -245,9 +299,9 @@
     </main>
 
     <footer class="site-footer">
-      <a class="brand footer-brand" href="#top"><span class="brand-mark" aria-hidden="true">○</span><span>SWIM<br />WITH CONFIDENCE</span></a>
-      <p>水の中から、自信が育つ。<br />子ども向け水泳レッスン</p>
-      <small>© 2026 SWIM WITH CONFIDENCE</small>
+      <a class="brand footer-brand" href="#top"><img class="brand-mark" src="./images/brand-mark.svg" alt="" aria-hidden="true" /><span>SOTO ASOBI<br />PLAY &amp; MOVE</span></a>
+      <p>遊びの中から、自信が育つ。<br />保護者のための遊び運動レッスン</p>
+      <small>© 2026 SOTO ASOBI PLAY &amp; MOVE</small>
     </footer>
 
     <script src="./js/script.js"></script>

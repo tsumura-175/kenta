@@ -10,7 +10,11 @@ const authForm = document.querySelector("[data-auth-form]");
 const authStatus = document.querySelector("[data-auth-status]");
 const contactForm = document.querySelector("[data-contact-form]");
 const formStatus = document.querySelector("[data-form-status]");
+const backToTop = document.querySelector("[data-back-to-top]");
+const hero = document.querySelector(".hero");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const heroSlides = [...document.querySelectorAll(".hero-slide")];
+const heroPagination = document.querySelector("[data-hero-pagination] span");
 const isGitHubPages = window.location.hostname.endsWith(".github.io");
 const previewAuth = {
   enabled: isGitHubPages,
@@ -77,6 +81,35 @@ if (contactForm && formStatus) {
   });
 }
 
+if (heroSlides.length > 1 && !reducedMotion) {
+  let activeHeroSlide = 0;
+
+  window.setInterval(() => {
+    heroSlides[activeHeroSlide].classList.remove("is-active");
+    activeHeroSlide = (activeHeroSlide + 1) % heroSlides.length;
+    heroSlides[activeHeroSlide].classList.add("is-active");
+
+    if (heroPagination) {
+      heroPagination.textContent = String(activeHeroSlide + 1).padStart(2, "0");
+    }
+  }, 6000);
+}
+
+if (backToTop && hero) {
+  const backToTopObserver = new IntersectionObserver(
+    ([entry]) => {
+      backToTop.classList.toggle("is-visible", !entry.isIntersecting);
+    },
+    { threshold: 0 },
+  );
+
+  backToTopObserver.observe(hero);
+
+  backToTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
+  });
+}
+
 const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -95,20 +128,27 @@ const navSections = navLinks
   .map((link) => document.querySelector(link.getAttribute("href")))
   .filter(Boolean);
 
-const navigationObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
+const updateActiveNavigation = () => {
+  if (!navSections.length) return;
 
-      navLinks.forEach((link) => {
-        link.classList.toggle("is-active", link.getAttribute("href") === `#${entry.target.id}`);
-      });
-    });
-  },
-  { threshold: 0.2, rootMargin: "-28% 0px -58% 0px" },
-);
+  const firstSectionTop = navSections[0].offsetTop - header.offsetHeight;
 
-navSections.forEach((section) => navigationObserver.observe(section));
+  if (window.scrollY < firstSectionTop) {
+    navLinks.forEach((link) => link.classList.remove("is-active"));
+    return;
+  }
+
+  const activationPoint = window.scrollY + window.innerHeight * 0.32;
+  let activeSection = navSections[0];
+
+  navSections.forEach((section) => {
+    if (section.offsetTop <= activationPoint) activeSection = section;
+  });
+
+  navLinks.forEach((link) => {
+    link.classList.toggle("is-active", link.getAttribute("href") === `#${activeSection.id}`);
+  });
+};
 
 const updateScrollState = () => {
   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
@@ -116,6 +156,7 @@ const updateScrollState = () => {
 
   meter.style.transform = `scaleX(${progress})`;
   header.classList.toggle("is-scrolled", window.scrollY > 20);
+  updateActiveNavigation();
 
   if (!reducedMotion) {
     parallaxItems.forEach((item) => {
