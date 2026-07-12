@@ -309,7 +309,7 @@ img {
       rgba(241, 248, 234, 0.93) 58%,
       rgba(255, 244, 225, 0.94) 100%
     ),
-    url("../images/image_3.jpg") center / cover;
+    url("../images/instructor-with-children.jpg") center / cover;
   place-items: center;
   transition:
     opacity 280ms ease,
