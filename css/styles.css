@@ -787,11 +787,11 @@ body:not(.auth-locked) .auth-gate {
 }
 .program::after {
   position: absolute;
-  top: -25vw;
-  right: -17vw;
+  top: -22vw;
+  right: -15vw;
   width: min(57vw, 700px);
   aspect-ratio: 1;
-  border: 1px solid rgba(114, 201, 76, 0.36);
+  border: 1px solid rgba(114, 201, 76, 0.24);
   border-radius: 50%;
   content: "";
 }
@@ -810,96 +810,147 @@ body:not(.auth-locked) .auth-gate {
   position: relative;
   z-index: 1;
   display: grid;
-  gap: 14px;
+  gap: 18px;
   margin: 55px 0 0;
 }
 .program-card {
-  min-height: 205px;
-  padding: 28px 26px;
-  border: 1px solid rgba(63, 61, 56, 0.16);
-  background: rgba(255, 255, 255, 0.76);
+  position: relative;
+  min-height: 315px;
+  overflow: hidden;
+  padding: clamp(28px, 5vw, 44px);
+  border: 1px solid rgba(63, 61, 56, 0.12);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 18px 42px rgba(63, 61, 56, 0.06);
+  transition:
+    transform 260ms ease,
+    border-color 260ms ease,
+    background 260ms ease,
+    box-shadow 260ms ease;
 }
 .program-card:nth-child(2) {
-  background: #f5faed;
+  background: rgba(245, 250, 237, 0.9);
 }
 .program-card:nth-child(3) {
-  background: #fff6e5;
+  background: rgba(255, 246, 229, 0.9);
 }
-.program-card span {
+.program-card:nth-child(4) {
+  background: rgba(255, 255, 255, 0.92);
+}
+.program-card:hover {
+  border-color: rgba(114, 201, 76, 0.34);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 28px 60px rgba(63, 61, 56, 0.12);
+  transform: translateY(-8px);
+}
+.program-label {
+  position: relative;
+  z-index: 1;
+  margin: 0;
   color: var(--green-deep);
-  font-family: var(--display);
-  font-size: 1.1rem;
-  font-weight: 900;
-  letter-spacing: 0.06em;
+  font-family: var(--body);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.16em;
 }
-.program-card:nth-child(3) span {
+.program-card:nth-child(3) .program-label {
   color: var(--orange-deep);
 }
 .program-card h3 {
-  margin: 25px 0 0;
+  position: relative;
+  z-index: 1;
+  margin: 24px 0 0;
   font-family: var(--display);
-  font-size: 1.45rem;
-  line-height: 1.45;
-  letter-spacing: -0.04em;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.42;
+  letter-spacing: 0;
 }
-.program-card p {
-  margin: 14px 0 0;
+.program-card > p:not(.program-label) {
+  position: relative;
+  z-index: 1;
+  max-width: 520px;
+  margin: 16px 0 0;
   color: var(--ink-soft);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1.9;
 }
+.program-card > p:not(.program-label) + p {
+  margin-top: 10px;
+}
+.program-card-ornament {
+  position: absolute;
+  right: -18px;
+  bottom: -18px;
+  width: min(36%, 164px);
+  color: var(--green);
+  opacity: 0.11;
+  transform: translate(0, 0) scale(1);
+  transition:
+    opacity 260ms ease,
+    transform 260ms ease;
+}
+.program-card-ornament path,
+.program-card-ornament circle {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.program-card:nth-child(3) .program-card-ornament {
+  color: var(--orange);
+}
+.program-card:hover .program-card-ornament {
+  opacity: 0.17;
+  transform: translate(-2px, -2px) scale(1.03);
+}
 
 .instructor {
-  display: grid;
-  gap: 44px;
-  align-items: center;
+  position: relative;
+  overflow: hidden;
   padding: var(--section) var(--gutter);
   background: linear-gradient(150deg, #f7fbef, var(--paper-deep));
 }
-.instructor-photo {
-  aspect-ratio: 1 / 1.1;
-  overflow: hidden;
-  box-shadow: 22px 24px 0 rgba(114, 201, 76, 0.2);
+.instructor-visual {
+  position: relative;
+  max-width: 1180px;
+  margin: 0 auto;
+  overflow: visible;
+  border-radius: 26px;
 }
-.instructor-photo img {
-  object-position: 50% 53%;
+.instructor-visual::after {
+  display: none;
+}
+.instructor-visual > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  border-radius: inherit;
+  object-fit: contain;
 }
 .instructor-copy {
+  position: relative;
+  z-index: 1;
   max-width: 620px;
+  margin: -68px clamp(18px, 5vw, 56px) 0;
+  padding: clamp(28px, 5vw, 48px);
+  border: 1px solid rgba(114, 201, 76, 0.22);
+  border-radius: 22px;
+  background: rgba(255, 253, 247, 0.9);
+  box-shadow: 0 22px 50px rgba(63, 61, 56, 0.16);
+  backdrop-filter: blur(14px);
   container-type: inline-size;
 }
 .instructor h2 {
   margin-top: 22px;
-  white-space: nowrap;
+  white-space: normal;
 }
 .instructor-copy .section-lead {
   margin: 25px 0 0;
-}
-.instructor-values {
-  display: grid;
-  gap: 0;
-  margin: 36px 0 0;
-  border-top: 1px solid var(--line);
-}
-.instructor-values div {
-  display: grid;
-  grid-template-columns: 42px 1fr;
-  gap: 12px;
-  padding: 15px 0;
-  border-bottom: 1px solid var(--line);
-}
-.instructor-values dt {
-  color: var(--green-deep);
-  font-family: var(--display);
-  font-size: 13px;
-  font-weight: 900;
-}
-.instructor-values dd {
-  margin: 0;
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1.75;
 }
 
 .assurance {
@@ -1289,7 +1340,8 @@ body.is-ready .hero-reveal {
 .assurance-list div:nth-child(3),
 .assurance-list div:nth-child(4),
 .program-card:nth-child(2),
-.program-card:nth-child(3) {
+.program-card:nth-child(3),
+.program-card:nth-child(4) {
   transition-delay: 100ms;
 }
 
@@ -1380,19 +1432,34 @@ body.is-ready .hero-title span {
     aspect-ratio: 1;
   }
   .program-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
   }
   .program-card {
-    min-height: 280px;
-    padding: 35px 28px;
+    min-height: 350px;
   }
-  .instructor {
-    grid-template-columns: minmax(300px, 0.75fr) minmax(300px, 0.8fr);
-    gap: clamp(48px, 8vw, 138px);
+  .instructor-visual {
+    display: grid;
+    grid-template-columns: minmax(0, 0.62fr) minmax(420px, 0.48fr);
+    min-height: 760px;
+    padding: 0 0 34px;
+    align-items: end;
   }
-  .instructor-photo {
-    aspect-ratio: 0.92 / 1;
+  .instructor-visual > img {
+    width: min(56vw, 650px);
+    margin-left: -8%;
+    grid-column: 1 / 2;
+  }
+  .instructor-copy {
+    position: relative;
+    z-index: 2;
+    grid-column: 2 / 3;
+    justify-self: end;
+    right: 0;
+    bottom: auto;
+    width: min(38vw, 500px);
+    margin: 0 0 18px -96px;
+    padding: clamp(28px, 4vw, 40px);
   }
   .assurance {
     display: grid;
