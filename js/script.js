@@ -5,6 +5,7 @@ const meter = document.querySelector(".scroll-meter span");
 const navLinks = [...document.querySelectorAll(".main-nav a")];
 const revealItems = document.querySelectorAll(".reveal");
 const parallaxItems = document.querySelectorAll("[data-parallax]");
+const featuresStage = document.querySelector("[data-features-stage]");
 const authGate = document.querySelector("[data-auth-gate]");
 const authForm = document.querySelector("[data-auth-form]");
 const authStatus = document.querySelector("[data-auth-status]");
@@ -15,6 +16,9 @@ const hero = document.querySelector(".hero");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const heroSlides = [...document.querySelectorAll(".hero-slide")];
 const heroPagination = document.querySelector("[data-hero-pagination] span");
+const featuresIntro = document.querySelector(".features-intro");
+const featureMotionItems = [...document.querySelectorAll("[data-feature-motion]")];
+let smoothScroll = null;
 const isGitHubPages = window.location.hostname.endsWith(".github.io");
 const previewAuth = {
   enabled: isGitHubPages,
@@ -67,7 +71,26 @@ menuToggle.addEventListener("click", () => {
 });
 
 navigation.addEventListener("click", (event) => {
-  if (event.target.closest("a")) closeMenu();
+  const link = event.target.closest("a");
+  if (!link) return;
+
+  const target = document.querySelector(link.getAttribute("href"));
+  if (target && !reducedMotion && smoothScroll) {
+    event.preventDefault();
+    smoothScroll.scrollTo(target, {
+      offset: -(header.offsetHeight + 8),
+      duration: 1.15,
+    });
+  } else if (target && !reducedMotion && window.gsap && window.ScrollToPlugin) {
+    event.preventDefault();
+    gsap.to(window, {
+      duration: 0.95,
+      scrollTo: { y: target, offsetY: header.offsetHeight + 8 },
+      ease: "power3.out",
+    });
+  }
+
+  closeMenu();
 });
 
 if (contactForm && formStatus) {
@@ -95,34 +118,194 @@ if (heroSlides.length > 1 && !reducedMotion) {
   }, 6000);
 }
 
-if (backToTop && hero) {
-  const backToTopObserver = new IntersectionObserver(
-    ([entry]) => {
-      backToTop.classList.toggle("is-visible", !entry.isIntersecting);
-    },
-    { threshold: 0 },
-  );
-
-  backToTopObserver.observe(hero);
-
+if (backToTop) {
   backToTop.addEventListener("click", () => {
+    if (!reducedMotion && smoothScroll) {
+      smoothScroll.scrollTo(0, { duration: 1.15 });
+      return;
+    }
+
+    if (!reducedMotion && window.gsap && window.ScrollToPlugin) {
+      gsap.to(window, { duration: 0.9, scrollTo: 0, ease: "power3.out" });
+      return;
+    }
+
     window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
   });
 }
 
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.12, rootMargin: "0px 0px -7% 0px" },
-);
+const setupFeatureMotion = () => {
+  if (!featureMotionItems.length || !featuresStage) return;
 
-revealItems.forEach((item) => revealObserver.observe(item));
+  if (reducedMotion || !window.gsap || !window.ScrollTrigger) {
+    featureMotionItems.forEach((item) => {
+      item.style.setProperty("--feature-opacity", "1");
+      item.style.setProperty("--feature-blur", "0px");
+      item.style.setProperty("--feature-photo-y", "0px");
+      item.style.setProperty("--feature-copy-y", "0px");
+      item.style.setProperty("--feature-stack-y", "0vh");
+    });
+    return;
+  }
+
+  gsap.registerPlugin(ScrollTrigger);
+  featuresStage.classList.add("is-motion-ready");
+
+  featureMotionItems.forEach((item, index) => {
+    gsap.set(item, {
+      zIndex: featureMotionItems.length - index,
+      "--feature-opacity": index === 0 ? 1 : 0,
+      "--feature-blur": index === 0 ? "0px" : "16px",
+      "--feature-photo-y": index === 0 ? "0px" : "92px",
+      "--feature-copy-y": index === 0 ? "0px" : "72px",
+      "--feature-stack-y": index === 0 ? "0vh" : "22vh",
+    });
+  });
+
+  const timeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: featuresStage,
+      start: "top top",
+      end: () => `+=${window.innerHeight * (featureMotionItems.length * 0.78)}`,
+      scrub: 1.15,
+      pin: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+    },
+  });
+
+  featureMotionItems.forEach((item, index) => {
+    if (index === 0) {
+      timeline.to(
+        item,
+        {
+          zIndex: featureMotionItems.length + 1,
+          "--feature-opacity": 1,
+          "--feature-blur": "0px",
+          "--feature-photo-y": "0px",
+          "--feature-copy-y": "0px",
+          "--feature-stack-y": "0vh",
+          duration: 0.45,
+          ease: "none",
+        },
+        0,
+      );
+    } else {
+      timeline.to(
+        item,
+        {
+          zIndex: featureMotionItems.length + 1,
+          "--feature-opacity": 1,
+          "--feature-blur": "0px",
+          "--feature-photo-y": "0px",
+          "--feature-copy-y": "0px",
+          "--feature-stack-y": "0vh",
+          duration: 0.62,
+          ease: "power2.out",
+        },
+        index - 0.34,
+      );
+    }
+
+    if (index < featureMotionItems.length - 1) {
+      timeline.to(
+        item,
+        {
+          "--feature-opacity": 0,
+          "--feature-blur": "14px",
+          "--feature-photo-y": "-56px",
+          "--feature-copy-y": "-44px",
+          "--feature-stack-y": "-9vh",
+          duration: 0.48,
+          ease: "power1.in",
+        },
+        index + 0.5,
+      );
+    }
+  });
+};
+
+const setupGsapScroll = () => {
+  if (!window.gsap || !window.ScrollTrigger) {
+    revealItems.forEach((item) => item.classList.add("is-visible"));
+    featureMotionItems.forEach((item) => {
+      item.style.setProperty("--feature-opacity", "1");
+      item.style.setProperty("--feature-blur", "0px");
+      item.style.setProperty("--feature-photo-y", "0px");
+      item.style.setProperty("--feature-copy-y", "0px");
+      item.style.setProperty("--feature-stack-y", "0vh");
+    });
+    updateActiveNavigation();
+    return;
+  }
+
+  gsap.registerPlugin(ScrollTrigger);
+  if (window.ScrollToPlugin) gsap.registerPlugin(ScrollToPlugin);
+
+  ScrollTrigger.create({
+    start: 0,
+    end: "max",
+    onUpdate: (self) => {
+      meter.style.transform = `scaleX(${self.progress})`;
+      header.classList.toggle("is-scrolled", self.scroll() > 20);
+      backToTop?.classList.toggle("is-visible", hero ? self.scroll() > hero.offsetHeight * 0.82 : self.scroll() > 500);
+      updateActiveNavigation();
+    },
+  });
+
+  revealItems.forEach((item) => {
+    ScrollTrigger.create({
+      trigger: item,
+      start: "top 88%",
+      once: true,
+      onEnter: () => item.classList.add("is-visible"),
+    });
+  });
+
+  if (!reducedMotion) {
+    parallaxItems.forEach((item) => {
+      const speed = Number(item.dataset.parallax || 0);
+      gsap.to(item, {
+        "--parallax-shift": `${Math.max(8, speed * 240)}px`,
+        ease: "none",
+        scrollTrigger: {
+          trigger: item,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+    });
+  }
+
+  setupFeatureMotion();
+};
+
+const setupSmoothScroll = () => {
+  if (reducedMotion || !window.Lenis) return;
+
+  smoothScroll = new Lenis({
+    duration: 1.05,
+    easing: (progress) => Math.min(1, 1.001 - 2 ** (-10 * progress)),
+    smoothWheel: true,
+    wheelMultiplier: 0.9,
+    touchMultiplier: 1,
+  });
+
+  if (window.gsap && window.ScrollTrigger) {
+    smoothScroll.on("scroll", ScrollTrigger.update);
+    gsap.ticker.add((time) => smoothScroll.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+    return;
+  }
+
+  const raf = (time) => {
+    smoothScroll.raf(time);
+    window.requestAnimationFrame(raf);
+  };
+
+  window.requestAnimationFrame(raf);
+};
 
 const navSections = navLinks
   .map((link) => document.querySelector(link.getAttribute("href")))
@@ -150,43 +333,10 @@ const updateActiveNavigation = () => {
   });
 };
 
-const updateScrollState = () => {
-  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-  const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+setupGsapScroll();
+setupSmoothScroll();
 
-  meter.style.transform = `scaleX(${progress})`;
-  header.classList.toggle("is-scrolled", window.scrollY > 20);
-  updateActiveNavigation();
-
-  if (!reducedMotion) {
-    parallaxItems.forEach((item) => {
-      const speed = Number(item.dataset.parallax || 0);
-      const bounds = item.getBoundingClientRect();
-      const viewportOffset = bounds.top + bounds.height / 2 - window.innerHeight / 2;
-      const shift = Math.max(-28, Math.min(28, viewportOffset * speed * -0.12));
-      item.style.setProperty("--parallax-shift", `${shift}px`);
-    });
-  }
-};
-
-let isTicking = false;
-
-window.addEventListener(
-  "scroll",
-  () => {
-    if (isTicking) return;
-
-    window.requestAnimationFrame(() => {
-      updateScrollState();
-      isTicking = false;
-    });
-    isTicking = true;
-  },
-  { passive: true },
-);
-
-window.addEventListener("resize", updateScrollState);
 window.addEventListener("load", () => {
   document.body.classList.add("is-ready");
-  updateScrollState();
+  window.ScrollTrigger?.refresh();
 });
