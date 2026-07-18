@@ -32,7 +32,7 @@
             <label for="auth-password">パスワード</label>
             <input id="auth-password" name="password" type="password" autocomplete="current-password" required />
           </div>
-          <button class="form-submit auth-submit" type="submit">サイトを見る <span aria-hidden="true">↗</span></button>
+          <button class="button button--primary button--block form-submit auth-submit" type="submit">サイトを見る <span aria-hidden="true">↗</span></button>
           <p class="auth-status" data-auth-status aria-live="polite"></p>
         </form>
       </div>
@@ -68,7 +68,7 @@
         <a href="#faq">よくある質問</a>
       </nav>
 
-      <a class="header-cta" href="#contact">ご相談はこちら <span aria-hidden="true">↗</span></a>
+      <a class="button button--primary button--compact header-cta" href="#contact">ご相談はこちら <span aria-hidden="true">↗</span></a>
     </header>
 
     <main id="top">
@@ -122,7 +122,7 @@
             <p class="section-lead">
               小さな「できた」を重ねながら、挑戦することが楽しみになる時間をつくります。
             </p>
-            <a class="message-cta" href="#contact">ご相談はこちら <span aria-hidden="true">↗</span></a>
+            <a class="button button--primary message-cta" href="#contact">ご相談はこちら <span aria-hidden="true">↗</span></a>
           </div>
           <figure class="message-photo message-photo-one reveal" data-parallax="0.04">
             <img src="./images/playground-class-gathering.jpg" alt="公園の遊具の前で集まる講師と子どもたち" loading="lazy" />
@@ -253,19 +253,25 @@
       </section>
 
       <section id="assurance" class="assurance section" aria-labelledby="assurance-title">
-        <div class="assurance-intro reveal">
-          <img class="grass-accent" src="./images/grass-accent.svg" alt="" aria-hidden="true" />
-          <p class="eyebrow">FOR PARENTS</p>
-          <h2 id="assurance-title">安心して、<br />送り出せる時間に。</h2>
-          <p class="section-lead">初めて参加される保護者の方にも、活動の様子や準備するものが分かりやすく伝わるようにしています。</p>
+        <div class="assurance-layout">
+          <div class="assurance-intro reveal">
+            <img class="grass-accent" src="./images/grass-accent.svg" alt="" aria-hidden="true" />
+            <p class="eyebrow">FOR PARENTS</p>
+            <h2 id="assurance-title">安心して、<br />送り出せる時間に。</h2>
+            <p class="section-lead">初めて参加される保護者の方にも、活動の様子や準備するものが分かりやすく伝わるようにしています。</p>
+            <p class="assurance-note">初めてでも、大丈夫です。</p>
+          </div>
+          <figure class="assurance-photo reveal" data-parallax="0.035">
+            <img src="./images/hero-park-activity.jpg" alt="公園で講師と子どもたちが一緒に活動する様子" loading="lazy" />
+            <figcaption>子どもたちの様子を見ながら、一緒に過ごします。</figcaption>
+          </figure>
         </div>
         <dl class="assurance-list">
-          <div class="reveal"><dt>対象</dt><dd>年長〜中学1年生</dd></div>
-          <div class="reveal"><dt>場所</dt><dd>公園・広場などの屋外</dd></div>
-          <div class="reveal"><dt>配慮</dt><dd>一人ひとりの様子を見ながら、無理なく進めます</dd></div>
-          <div class="reveal"><dt>共有</dt><dd>活動後に、その日の様子をお伝えします</dd></div>
+          <div class="reveal"><dt>01 / WHO</dt><dd><strong>対象年齢</strong><span>年長〜中学1年生</span></dd></div>
+          <div class="reveal"><dt>02 / WHERE</dt><dd><strong>活動場所</strong><span>公園・広場などの屋外</span></dd></div>
+          <div class="reveal"><dt>03 / CARE</dt><dd><strong>一人ひとり<br />への配慮</strong><span>様子を見ながら、無理なく進めます</span></dd></div>
+          <div class="reveal"><dt>04 / SHARE</dt><dd><strong>活動後の<br />共有</strong><span>その日の様子をお伝えします</span></dd></div>
         </dl>
-        <div class="assurance-orbit" aria-hidden="true"><span>SAFE</span><span>FUN</span><span>TOGETHER</span></div>
       </section>
 
       <section id="flow" class="flow section" aria-labelledby="flow-title">
@@ -275,12 +281,49 @@
           <h2 id="flow-title">はじめるまでの流れ</h2>
           <p class="section-lead">気になることやお子さまの様子を、まずは気軽にお聞かせください。</p>
         </div>
-        <ol class="flow-list">
-          <li class="reveal"><span>01</span><h3>相談する</h3><p>年齢、普段の様子、気になることを教えてください。</p></li>
-          <li class="reveal"><span>02</span><h3>事前に確認する</h3><p>活動内容や場所など、参加前に知りたいことをご案内します。</p></li>
-          <li class="reveal"><span>03</span><h3>一緒に遊ぶ</h3><p>お子さまのペースを大切にしながら、思いきり体を動かします。</p></li>
-          <li class="reveal"><span>04</span><h3>様子を共有する</h3><p>その日の挑戦や成長を、保護者の方へお伝えします。</p></li>
-        </ol>
+        <div class="flow-journey">
+          <svg class="flow-path" viewBox="0 0 1000 1600" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M 570 42 C 790 155 790 335 545 440 S 255 640 485 790 S 780 985 545 1125 S 250 1340 460 1555" />
+            <circle cx="570" cy="42" r="9" />
+            <circle cx="485" cy="790" r="9" />
+            <circle cx="545" cy="1125" r="9" />
+            <circle cx="460" cy="1555" r="9" />
+          </svg>
+          <ol class="flow-list">
+            <li class="flow-step flow-step-one reveal">
+              <div class="flow-step-copy">
+                <p class="flow-step-number">01</p>
+                <h3>相談する</h3>
+                <p>年齢、普段の様子、気になることを教えてください。</p>
+              </div>
+              <figure class="flow-illustration"><img src="./images/flow-step-consult.png" alt="元気に走る子どものイラスト" loading="lazy" /></figure>
+            </li>
+            <li class="flow-step flow-step-two reveal">
+              <div class="flow-step-copy">
+                <p class="flow-step-number">02</p>
+                <h3>事前に確認する</h3>
+                <p>活動内容や場所など、参加前に知りたいことをご案内します。</p>
+              </div>
+              <figure class="flow-illustration"><img src="./images/flow-step-confirm.png" alt="前へ進む子どものイラスト" loading="lazy" /></figure>
+            </li>
+            <li class="flow-step flow-step-three reveal">
+              <div class="flow-step-copy">
+                <p class="flow-step-number">03</p>
+                <h3>一緒に遊ぶ</h3>
+                <p>お子さまのペースを大切にしながら、思いきり体を動かします。</p>
+              </div>
+              <figure class="flow-illustration"><img src="./images/flow-step-play.png" alt="楽しそうに走る子どものイラスト" loading="lazy" /></figure>
+            </li>
+            <li class="flow-step flow-step-four reveal">
+              <div class="flow-step-copy">
+                <p class="flow-step-number">04</p>
+                <h3>様子を共有する</h3>
+                <p>その日の挑戦や成長を、保護者の方へお伝えします。</p>
+              </div>
+              <figure class="flow-illustration"><img src="./images/flow-step-share.png" alt="親指を立てる子どものイラスト" loading="lazy" /></figure>
+            </li>
+          </ol>
+        </div>
       </section>
 
       <section id="faq" class="faq section" aria-labelledby="faq-title">
@@ -288,24 +331,29 @@
           <img class="grass-accent" src="./images/grass-accent.svg" alt="" aria-hidden="true" />
           <p class="eyebrow">FAQ</p>
           <h2 id="faq-title">よくある質問</h2>
+          <p class="faq-lead">気になることを、先に解消します。</p>
         </div>
         <div class="faq-list">
           <details class="faq-item reveal" open>
-            <summary>運動が苦手でも参加できますか？ <span aria-hidden="true">＋</span></summary>
-            <p>もちろんです。得意・不得意で分けるのではなく、一人ひとりが楽しめることや挑戦できることを見つけながら進めます。</p>
+            <summary><span class="faq-question-number">Q 01</span><span class="faq-question">運動が苦手でも参加できますか？</span><span class="faq-toggle" aria-hidden="true">＋</span></summary>
+            <p><span class="faq-answer-label" aria-hidden="true">A</span><span>もちろんです。得意・不得意で分けるのではなく、一人ひとりが楽しめることや挑戦できることを見つけながら進めます。</span></p>
           </details>
           <details class="faq-item reveal">
-            <summary>対象年齢はどのくらいですか？ <span aria-hidden="true">＋</span></summary>
-            <p>年長から中学1年生までを対象にしています。お子さまの様子や目的に合わせて、活動についてご案内します。</p>
+            <summary><span class="faq-question-number">Q 02</span><span class="faq-question">対象年齢はどのくらいですか？</span><span class="faq-toggle" aria-hidden="true">＋</span></summary>
+            <p><span class="faq-answer-label" aria-hidden="true">A</span><span>年長から中学1年生までを対象にしています。お子さまの様子や目的に合わせて、活動についてご案内します。</span></p>
           </details>
           <details class="faq-item reveal">
-            <summary>何を持って行けばよいですか？ <span aria-hidden="true">＋</span></summary>
-            <p>動きやすい服装、飲み物、帽子などを基本に、活動内容や季節に合わせて事前にご案内します。</p>
+            <summary><span class="faq-question-number">Q 03</span><span class="faq-question">何を持って行けばよいですか？</span><span class="faq-toggle" aria-hidden="true">＋</span></summary>
+            <p><span class="faq-answer-label" aria-hidden="true">A</span><span>動きやすい服装、飲み物、帽子などを基本に、活動内容や季節に合わせて事前にご案内します。</span></p>
           </details>
           <details class="faq-item reveal">
-            <summary>雨の日はどうなりますか？ <span aria-hidden="true">＋</span></summary>
-            <p>天候による開催可否や対応については、事前に分かりやすくお知らせします。まずはお問い合わせ時にご確認ください。</p>
+            <summary><span class="faq-question-number">Q 04</span><span class="faq-question">雨の日はどうなりますか？</span><span class="faq-toggle" aria-hidden="true">＋</span></summary>
+            <p><span class="faq-answer-label" aria-hidden="true">A</span><span>天候による開催可否や対応については、事前に分かりやすくお知らせします。まずはお問い合わせ時にご確認ください。</span></p>
           </details>
+        </div>
+        <div class="faq-bridge reveal">
+          <p>ほかにも気になることがあれば、気軽にお聞かせください。</p>
+          <a class="button button--text faq-bridge-link" href="#contact">気軽に相談する <span aria-hidden="true">↗</span></a>
         </div>
       </section>
 
@@ -317,30 +365,38 @@
           <div class="contact-copy reveal">
             <img class="grass-accent" src="./images/grass-accent.svg" alt="" aria-hidden="true" />
             <p class="eyebrow">LET'S TALK</p>
-            <h2 id="contact-title">まずは、<br />気軽に相談<br />してください。</h2>
-            <p class="section-lead">「外で思いきり遊ばせたい」「運動を好きになってほしい」「初めてでも大丈夫かな」。どんな小さなことでも、まずは聞かせてください。</p>
-            <p id="contact-form-note" class="contact-note">※ フォーム内容・送信先は公開時に設定します。</p>
+            <h2 id="contact-title">気になることを、<br />気軽に聞かせて<br />ください。</h2>
+            <p class="section-lead">相談内容が決まっていなくても大丈夫です。お子さまのこと、気になっていることを、まずは聞かせてください。</p>
+            <p id="contact-form-note" class="contact-note">メールアドレスだけで送れます。※ フォーム内容・送信先は公開時に設定します。</p>
           </div>
 
           <form class="contact-form reveal" data-contact-form aria-describedby="contact-form-note">
             <p class="form-kicker">CONTACT FORM</p>
+            <p class="form-lead">わかる範囲だけで大丈夫です。</p>
             <div class="form-field">
-              <label for="contact-name">お名前 <span aria-hidden="true">*</span></label>
-              <input id="contact-name" name="name" type="text" autocomplete="name" placeholder="山田 花子" required aria-required="true" />
+              <label for="contact-name">お名前 <span class="form-optional">任意</span></label>
+              <input id="contact-name" name="name" type="text" autocomplete="name" placeholder="山田 花子" />
             </div>
             <div class="form-field">
-              <label for="contact-grade">お子さまの学年</label>
-              <input id="contact-grade" name="grade" type="text" placeholder="小学2年生" />
-            </div>
-            <div class="form-field">
-              <label for="contact-email">メールアドレス <span aria-hidden="true">*</span></label>
+              <label for="contact-email">メールアドレス <span class="form-required" aria-hidden="true">必須</span></label>
               <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="example@email.com" required aria-required="true" />
             </div>
+            <fieldset class="contact-topics">
+              <legend>相談したいこと <span class="form-optional">任意・複数選択可</span></legend>
+              <div class="contact-topic-options">
+                <label class="contact-topic"><input type="checkbox" name="topics" value="activity" /><span>活動内容について</span></label>
+                <label class="contact-topic"><input type="checkbox" name="topics" value="trial" /><span>体験・参加について</span></label>
+                <label class="contact-topic"><input type="checkbox" name="topics" value="age" /><span>対象年齢や相性について</span></label>
+                <label class="contact-topic"><input type="checkbox" name="topics" value="schedule" /><span>開催日時・場所について</span></label>
+                <label class="contact-topic"><input type="checkbox" name="topics" value="talk" /><span>まずは話を聞いてみたい</span></label>
+                <label class="contact-topic"><input type="checkbox" name="topics" value="other" /><span>その他</span></label>
+              </div>
+            </fieldset>
             <div class="form-field">
-              <label for="contact-message">相談内容 <span aria-hidden="true">*</span></label>
-              <textarea id="contact-message" name="message" rows="4" placeholder="外遊びが好きな子に合う活動を知りたいです。" required aria-required="true"></textarea>
+              <label for="contact-message">自由記入 <span class="form-optional">任意</span></label>
+              <textarea id="contact-message" name="message" rows="2" placeholder="気になっていることがあれば、ご記入ください。"></textarea>
             </div>
-            <button class="form-submit" type="submit">相談内容を送る <span aria-hidden="true">↗</span></button>
+            <button class="button button--primary button--block form-submit" type="submit">気軽に相談する <span aria-hidden="true">↗</span></button>
             <p class="form-status" data-form-status aria-live="polite"></p>
           </form>
         </div>
@@ -348,9 +404,22 @@
     </main>
 
     <footer class="site-footer">
-      <a class="brand footer-brand" href="#top"><img class="brand-mark" src="./images/brand-mark.svg" alt="" aria-hidden="true" /><span>SOTO ASOBI<br />PLAY &amp; MOVE</span></a>
-      <p>遊びの中から、自信が育つ。<br />保護者のための遊び運動レッスン</p>
-      <small>© 2026 SOTO ASOBI PLAY &amp; MOVE</small>
+      <div class="footer-shell">
+        <a class="brand footer-brand" href="#top">
+          <img class="brand-mark" src="./images/brand-mark.svg" alt="" aria-hidden="true" />
+          <span>SOTO ASOBI<br />PLAY &amp; MOVE</span>
+        </a>
+        <nav class="footer-nav" aria-label="フッターナビゲーション">
+          <a href="#message">メッセージ</a>
+          <a href="#features">育まれること</a>
+          <a href="#program">活動内容</a>
+          <a href="#instructor">講師について</a>
+          <a href="#faq">よくある質問</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <small>© 2026 SOTO ASOBI PLAY &amp; MOVE</small>
+      </div>
     </footer>
 
     <script src="./js/vendor/gsap.min.js"></script>

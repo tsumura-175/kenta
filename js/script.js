@@ -18,6 +18,8 @@ const heroSlides = [...document.querySelectorAll(".hero-slide")];
 const heroPagination = document.querySelector("[data-hero-pagination] span");
 const featuresIntro = document.querySelector(".features-intro");
 const featureMotionItems = [...document.querySelectorAll("[data-feature-motion]")];
+const SCROLL_OFFSET = 8;
+const HERO_SLIDE_INTERVAL_MS = 6000;
 let smoothScroll = null;
 const isGitHubPages = window.location.hostname.endsWith(".github.io");
 const previewAuth = {
@@ -32,13 +34,19 @@ const unlockPreview = () => {
   authGate?.setAttribute("aria-hidden", "true");
 };
 
-if (!previewAuth.enabled) {
-  unlockPreview();
-} else if (sessionStorage.getItem(previewAuth.storageKey) === "true") {
-  unlockPreview();
-}
+const initPreviewAuth = () => {
+  if (!previewAuth.enabled) {
+    unlockPreview();
+    return;
+  }
 
-if (authForm && authStatus && previewAuth.enabled) {
+  if (sessionStorage.getItem(previewAuth.storageKey) === "true") {
+    unlockPreview();
+    return;
+  }
+
+  if (!authForm || !authStatus) return;
+
   authForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
@@ -58,42 +66,56 @@ if (authForm && authStatus && previewAuth.enabled) {
   authForm.addEventListener("input", () => {
     authStatus.textContent = "";
   });
-}
-
-const closeMenu = () => {
-  header.classList.remove("is-open");
-  menuToggle.setAttribute("aria-expanded", "false");
 };
 
-menuToggle.addEventListener("click", () => {
-  const isOpen = header.classList.toggle("is-open");
-  menuToggle.setAttribute("aria-expanded", String(isOpen));
-});
+const closeMenu = () => {
+  header?.classList.remove("is-open");
+  menuToggle?.setAttribute("aria-expanded", "false");
+};
 
-navigation.addEventListener("click", (event) => {
-  const link = event.target.closest("a");
-  if (!link) return;
+const scrollToTarget = (target) => {
+  if (!target || reducedMotion) return false;
 
-  const target = document.querySelector(link.getAttribute("href"));
-  if (target && !reducedMotion && smoothScroll) {
-    event.preventDefault();
-    smoothScroll.scrollTo(target, {
-      offset: -(header.offsetHeight + 8),
-      duration: 1.15,
-    });
-  } else if (target && !reducedMotion && window.gsap && window.ScrollToPlugin) {
-    event.preventDefault();
-    gsap.to(window, {
-      duration: 0.95,
-      scrollTo: { y: target, offsetY: header.offsetHeight + 8 },
-      ease: "power3.out",
-    });
+  const offset = -((header?.offsetHeight || 0) + SCROLL_OFFSET);
+
+  if (smoothScroll) {
+    smoothScroll.scrollTo(target, { offset, duration: 1.15 });
+    return true;
   }
 
-  closeMenu();
-});
+  if (window.gsap && window.ScrollToPlugin) {
+    gsap.to(window, {
+      duration: 0.95,
+      scrollTo: { y: target, offsetY: -offset },
+      ease: "power3.out",
+    });
+    return true;
+  }
 
-if (contactForm && formStatus) {
+  return false;
+};
+
+const initNavigation = () => {
+  if (!header || !menuToggle || !navigation) return;
+
+  menuToggle.addEventListener("click", () => {
+    const isOpen = header.classList.toggle("is-open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  navigation.addEventListener("click", (event) => {
+    const link = event.target.closest("a");
+    if (!link) return;
+
+    const target = document.querySelector(link.getAttribute("href"));
+    if (scrollToTarget(target)) event.preventDefault();
+    closeMenu();
+  });
+};
+
+const initContactForm = () => {
+  if (!contactForm || !formStatus) return;
+
   contactForm.addEventListener("submit", (event) => {
     event.preventDefault();
     formStatus.textContent = "送信先は仮設定のため、現在この内容は送信されません。";
@@ -102,9 +124,11 @@ if (contactForm && formStatus) {
   contactForm.addEventListener("input", () => {
     formStatus.textContent = "";
   });
-}
+};
 
-if (heroSlides.length > 1 && !reducedMotion) {
+const initHeroCarousel = () => {
+  if (heroSlides.length < 2 || reducedMotion) return;
+
   let activeHeroSlide = 0;
 
   window.setInterval(() => {
@@ -115,10 +139,12 @@ if (heroSlides.length > 1 && !reducedMotion) {
     if (heroPagination) {
       heroPagination.textContent = String(activeHeroSlide + 1).padStart(2, "0");
     }
-  }, 6000);
-}
+  }, HERO_SLIDE_INTERVAL_MS);
+};
 
-if (backToTop) {
+const initBackToTop = () => {
+  if (!backToTop) return;
+
   backToTop.addEventListener("click", () => {
     if (!reducedMotion && smoothScroll) {
       smoothScroll.scrollTo(0, { duration: 1.15 });
@@ -132,7 +158,7 @@ if (backToTop) {
 
     window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
   });
-}
+};
 
 const setupFeatureMotion = () => {
   if (!featureMotionItems.length || !featuresStage) return;
@@ -246,8 +272,8 @@ const setupGsapScroll = () => {
     start: 0,
     end: "max",
     onUpdate: (self) => {
-      meter.style.transform = `scaleX(${self.progress})`;
-      header.classList.toggle("is-scrolled", self.scroll() > 20);
+      if (meter) meter.style.transform = `scaleX(${self.progress})`;
+      header?.classList.toggle("is-scrolled", self.scroll() > 20);
       backToTop?.classList.toggle("is-visible", hero ? self.scroll() > hero.offsetHeight * 0.82 : self.scroll() > 500);
       updateActiveNavigation();
     },
@@ -312,7 +338,7 @@ const navSections = navLinks
   .filter(Boolean);
 
 const updateActiveNavigation = () => {
-  if (!navSections.length) return;
+  if (!navSections.length || !header) return;
 
   const firstSectionTop = navSections[0].offsetTop - header.offsetHeight;
 
@@ -333,6 +359,11 @@ const updateActiveNavigation = () => {
   });
 };
 
+initPreviewAuth();
+initNavigation();
+initContactForm();
+initHeroCarousel();
+initBackToTop();
 setupGsapScroll();
 setupSmoothScroll();
 
