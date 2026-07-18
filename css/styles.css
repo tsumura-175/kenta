@@ -1725,6 +1725,120 @@ body.is-ready .hero-title span {
   transform: translateY(0);
 }
 
+/* Compact layouts keep the long-form LP readable on small screens. */
+@media (max-width: 719px) {
+  :root {
+    --section-space: clamp(52px, 14vw, 64px);
+  }
+  .hero .eyebrow {
+    display: inline-flex;
+    max-width: 100%;
+    padding: 6px 10px;
+    border: 1px solid rgba(255, 253, 247, 0.52);
+    border-radius: var(--radius-control);
+    color: var(--ink);
+    font-size: 10px;
+    line-height: 1.35;
+    letter-spacing: 0.09em;
+    background: rgba(255, 253, 247, 0.74);
+    backdrop-filter: blur(6px);
+  }
+  .features-heading {
+    padding-bottom: 0;
+  }
+  .features-stage {
+    min-height: auto;
+    padding-top: var(--space-5);
+    padding-bottom: var(--space-6);
+  }
+  .features-stage:not(.is-motion-ready) .feature {
+    margin-top: var(--space-6);
+  }
+  .feature {
+    gap: var(--space-5);
+  }
+  .feature-copy h3 {
+    white-space: normal;
+  }
+  .feature-copy > p:not(.feature-index),
+  .feature-copy h3 + p {
+    margin-top: var(--space-4);
+  }
+  .feature-copy > p:not(.feature-index) {
+    font-size: var(--font-size-body);
+    line-height: 1.85;
+  }
+  .flow-journey {
+    margin-top: var(--space-6);
+  }
+  .faq-list {
+    margin-top: var(--space-6);
+  }
+  .faq-item summary {
+    grid-template-columns: auto minmax(0, 1fr) 30px;
+    gap: var(--space-2);
+    min-height: 72px;
+    padding: var(--space-4);
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .faq-toggle {
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+  }
+  .faq-item p {
+    grid-template-columns: 18px minmax(0, 1fr);
+    gap: var(--space-2);
+    padding: 0 var(--space-4) var(--space-5);
+    line-height: 1.85;
+  }
+  .faq-answer-label {
+    padding-top: 4px;
+  }
+}
+
+@media (max-width: 420px) {
+  .contact-topic-options {
+    grid-template-columns: 1fr;
+  }
+  .contact-topic {
+    min-height: 52px;
+    padding: 11px 12px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 359px) {
+  .hero {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+  .hero .eyebrow {
+    padding: 5px 8px;
+    font-size: 9px;
+    letter-spacing: 0.07em;
+  }
+  .hero-title {
+    font-size: clamp(2.2rem, 11vw, 2.65rem);
+    letter-spacing: -0.08em;
+  }
+  .hero-lead {
+    font-size: 13px;
+    line-height: 1.95;
+  }
+  .message-content {
+    width: 100%;
+    min-width: 0;
+  }
+  .message-content h2 {
+    white-space: normal;
+  }
+  .hero-facts {
+    gap: var(--space-3);
+  }
+}
+
 @media (min-width: 720px) {
   .site-header {
     grid-template-columns: auto 1fr auto;

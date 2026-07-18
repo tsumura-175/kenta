@@ -18,8 +18,10 @@ const heroSlides = [...document.querySelectorAll(".hero-slide")];
 const heroPagination = document.querySelector("[data-hero-pagination] span");
 const featuresIntro = document.querySelector(".features-intro");
 const featureMotionItems = [...document.querySelectorAll("[data-feature-motion]")];
+const contactSection = document.querySelector("#contact");
 const SCROLL_OFFSET = 8;
 const HERO_SLIDE_INTERVAL_MS = 6000;
+const isCompactViewport = window.matchMedia("(max-width: 719px)").matches;
 let smoothScroll = null;
 const isGitHubPages = window.location.hostname.endsWith(".github.io");
 const previewAuth = {
@@ -163,7 +165,8 @@ const initBackToTop = () => {
 const setupFeatureMotion = () => {
   if (!featureMotionItems.length || !featuresStage) return;
 
-  if (reducedMotion || !window.gsap || !window.ScrollTrigger) {
+  if (reducedMotion || isCompactViewport || !window.gsap || !window.ScrollTrigger) {
+    featuresStage.classList.remove("is-motion-ready");
     featureMotionItems.forEach((item) => {
       item.style.setProperty("--feature-opacity", "1");
       item.style.setProperty("--feature-blur", "0px");
@@ -274,7 +277,11 @@ const setupGsapScroll = () => {
     onUpdate: (self) => {
       if (meter) meter.style.transform = `scaleX(${self.progress})`;
       header?.classList.toggle("is-scrolled", self.scroll() > 20);
-      backToTop?.classList.toggle("is-visible", hero ? self.scroll() > hero.offsetHeight * 0.82 : self.scroll() > 500);
+      const hasPassedHero = hero ? self.scroll() > hero.offsetHeight * 0.82 : self.scroll() > 500;
+      const isNearContact = contactSection
+        ? self.scroll() + window.innerHeight * 0.55 >= contactSection.offsetTop
+        : false;
+      backToTop?.classList.toggle("is-visible", hasPassedHero && !isNearContact);
       updateActiveNavigation();
     },
   });
