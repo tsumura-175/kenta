@@ -746,6 +746,9 @@ body:not(.auth-locked) .auth-gate {
 .message-photo-two img {
   object-position: 50% 48%;
 }
+.message-mobile-gallery .message-photo-two img {
+  object-position: 35% 48%;
+}
 .message-photo-three img {
   object-position: 50% 48%;
 }
