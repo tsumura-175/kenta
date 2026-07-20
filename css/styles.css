@@ -1753,6 +1753,9 @@ body.is-ready .hero-title span {
   .features-heading {
     padding-bottom: 0;
   }
+  .features-heading h2 {
+    white-space: normal;
+  }
   .message-showcase > .message-photo {
     display: none;
   }
@@ -1765,7 +1768,7 @@ body.is-ready .hero-title span {
     margin-top: var(--space-8);
   }
   .feature {
-    gap: var(--space-5);
+    gap: var(--space-7);
   }
   .feature-copy h3 {
     white-space: normal;
