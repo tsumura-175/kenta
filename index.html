@@ -39,9 +39,9 @@
     </section>
 
     <div class="scroll-meter" aria-hidden="true"><span></span></div>
-    <button class="back-to-top" type="button" data-back-to-top aria-label="ページ上部へ戻る">
-      <span aria-hidden="true">↑</span>
-    </button>
+    <a class="button button--primary floating-contact-cta" href="#contact" data-floating-contact-cta>
+      ご相談はこちら <span aria-hidden="true">↗</span>
+    </a>
 
     <header class="site-header" data-header>
       <a class="brand" href="#top" aria-label="トップへ">
@@ -109,6 +109,17 @@
           <div class="message-content reveal">
             <div class="message-title-row">
               <h2 id="message-title">遊ぶことは、育つこと。</h2>
+            </div>
+            <div class="message-mobile-gallery" aria-hidden="true">
+              <figure class="message-photo message-photo-one">
+                <img src="./images/playground-class-gathering.jpg" alt="" loading="lazy" />
+              </figure>
+              <figure class="message-photo message-photo-two">
+                <img src="./images/class-group-photo.jpg" alt="" loading="lazy" />
+              </figure>
+              <figure class="message-photo message-photo-three">
+                <img src="./images/children-running-grass.jpg" alt="" loading="lazy" />
+              </figure>
             </div>
             <p class="section-lead">
               子どもにとって遊びは、ただ楽しいだけの時間ではありません。
@@ -353,7 +364,6 @@
         </div>
         <div class="faq-bridge reveal">
           <p>ほかにも気になることがあれば、気軽にお聞かせください。</p>
-          <a class="button button--text faq-bridge-link" href="#contact">気軽に相談する <span aria-hidden="true">↗</span></a>
         </div>
       </section>
 
@@ -396,7 +406,7 @@
               <label for="contact-message">自由記入 <span class="form-optional">任意</span></label>
               <textarea id="contact-message" name="message" rows="2" placeholder="気になっていることがあれば、ご記入ください。"></textarea>
             </div>
-            <button class="button button--primary button--block form-submit" type="submit">気軽に相談する <span aria-hidden="true">↗</span></button>
+            <button class="button button--primary form-submit" type="submit">気軽に相談する <span aria-hidden="true">↗</span></button>
             <p class="form-status" data-form-status aria-live="polite"></p>
           </form>
         </div>

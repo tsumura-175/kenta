@@ -11,8 +11,9 @@ const authForm = document.querySelector("[data-auth-form]");
 const authStatus = document.querySelector("[data-auth-status]");
 const contactForm = document.querySelector("[data-contact-form]");
 const formStatus = document.querySelector("[data-form-status]");
-const backToTop = document.querySelector("[data-back-to-top]");
+const floatingContactCta = document.querySelector("[data-floating-contact-cta]");
 const hero = document.querySelector(".hero");
+const messageSection = document.querySelector("#message");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const heroSlides = [...document.querySelectorAll(".hero-slide")];
 const heroPagination = document.querySelector("[data-hero-pagination] span");
@@ -21,7 +22,6 @@ const featureMotionItems = [...document.querySelectorAll("[data-feature-motion]"
 const contactSection = document.querySelector("#contact");
 const SCROLL_OFFSET = 8;
 const HERO_SLIDE_INTERVAL_MS = 6000;
-const isCompactViewport = window.matchMedia("(max-width: 719px)").matches;
 let smoothScroll = null;
 const isGitHubPages = window.location.hostname.endsWith(".github.io");
 const previewAuth = {
@@ -144,114 +144,134 @@ const initHeroCarousel = () => {
   }, HERO_SLIDE_INTERVAL_MS);
 };
 
-const initBackToTop = () => {
-  if (!backToTop) return;
+const initFloatingContactCta = () => {
+  if (!floatingContactCta) return;
 
-  backToTop.addEventListener("click", () => {
-    if (!reducedMotion && smoothScroll) {
-      smoothScroll.scrollTo(0, { duration: 1.15 });
-      return;
-    }
+  floatingContactCta.addEventListener("click", (event) => {
+    if (scrollToTarget(contactSection)) event.preventDefault();
+  });
+};
 
-    if (!reducedMotion && window.gsap && window.ScrollToPlugin) {
-      gsap.to(window, { duration: 0.9, scrollTo: 0, ease: "power3.out" });
-      return;
-    }
+const updateFloatingContactCta = (scrollPosition = window.scrollY) => {
+  const hasPassedMessage = messageSection
+    ? scrollPosition >= messageSection.offsetTop + messageSection.offsetHeight
+    : hero
+      ? scrollPosition > hero.offsetHeight
+      : scrollPosition > 500;
+  const isContactVisible = contactSection
+    ? scrollPosition + window.innerHeight >= contactSection.offsetTop
+    : false;
 
-    window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
+  floatingContactCta?.classList.toggle("is-visible", hasPassedMessage && !isContactVisible);
+};
+
+const desktopFeatureMotionQuery = window.matchMedia(
+  "(min-width: 720px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
+);
+let featureMotionTimeline = null;
+
+const resetFeatureMotion = () => {
+  featureMotionTimeline?.scrollTrigger?.kill();
+  featureMotionTimeline?.kill();
+  featureMotionTimeline = null;
+  featuresStage?.classList.remove("is-motion-ready");
+
+  featureMotionItems.forEach((item) => {
+    item.style.removeProperty("z-index");
+    item.style.setProperty("--feature-opacity", "1");
+    item.style.setProperty("--feature-blur", "0px");
+    item.style.setProperty("--feature-photo-y", "0px");
+    item.style.setProperty("--feature-copy-y", "0px");
+    item.style.setProperty("--feature-stack-y", "0vh");
   });
 };
 
 const setupFeatureMotion = () => {
   if (!featureMotionItems.length || !featuresStage) return;
 
-  if (reducedMotion || isCompactViewport || !window.gsap || !window.ScrollTrigger) {
-    featuresStage.classList.remove("is-motion-ready");
-    featureMotionItems.forEach((item) => {
-      item.style.setProperty("--feature-opacity", "1");
-      item.style.setProperty("--feature-blur", "0px");
-      item.style.setProperty("--feature-photo-y", "0px");
-      item.style.setProperty("--feature-copy-y", "0px");
-      item.style.setProperty("--feature-stack-y", "0vh");
+  const syncFeatureMotion = () => {
+    resetFeatureMotion();
+    if (!desktopFeatureMotionQuery.matches || !window.gsap || !window.ScrollTrigger) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+    featuresStage.classList.add("is-motion-ready");
+
+    featureMotionItems.forEach((item, index) => {
+      gsap.set(item, {
+        zIndex: featureMotionItems.length - index,
+        "--feature-opacity": index === 0 ? 1 : 0,
+        "--feature-blur": index === 0 ? "0px" : "16px",
+        "--feature-photo-y": index === 0 ? "0px" : "92px",
+        "--feature-copy-y": index === 0 ? "0px" : "72px",
+        "--feature-stack-y": index === 0 ? "0vh" : "22vh",
+      });
     });
-    return;
-  }
 
-  gsap.registerPlugin(ScrollTrigger);
-  featuresStage.classList.add("is-motion-ready");
-
-  featureMotionItems.forEach((item, index) => {
-    gsap.set(item, {
-      zIndex: featureMotionItems.length - index,
-      "--feature-opacity": index === 0 ? 1 : 0,
-      "--feature-blur": index === 0 ? "0px" : "16px",
-      "--feature-photo-y": index === 0 ? "0px" : "92px",
-      "--feature-copy-y": index === 0 ? "0px" : "72px",
-      "--feature-stack-y": index === 0 ? "0vh" : "22vh",
+    featureMotionTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: featuresStage,
+        start: "top top",
+        end: () => `+=${window.innerHeight * (featureMotionItems.length * 0.78)}`,
+        scrub: 1.15,
+        pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      },
     });
-  });
 
-  const timeline = gsap.timeline({
-    scrollTrigger: {
-      trigger: featuresStage,
-      start: "top top",
-      end: () => `+=${window.innerHeight * (featureMotionItems.length * 0.78)}`,
-      scrub: 1.15,
-      pin: true,
-      anticipatePin: 1,
-      invalidateOnRefresh: true,
-    },
-  });
+    featureMotionItems.forEach((item, index) => {
+      if (index === 0) {
+        featureMotionTimeline.to(
+          item,
+          {
+            zIndex: featureMotionItems.length + 1,
+            "--feature-opacity": 1,
+            "--feature-blur": "0px",
+            "--feature-photo-y": "0px",
+            "--feature-copy-y": "0px",
+            "--feature-stack-y": "0vh",
+            duration: 0.45,
+            ease: "none",
+          },
+          0,
+        );
+      } else {
+        featureMotionTimeline.to(
+          item,
+          {
+            zIndex: featureMotionItems.length + 1,
+            "--feature-opacity": 1,
+            "--feature-blur": "0px",
+            "--feature-photo-y": "0px",
+            "--feature-copy-y": "0px",
+            "--feature-stack-y": "0vh",
+            duration: 0.62,
+            ease: "power2.out",
+          },
+          index - 0.34,
+        );
+      }
 
-  featureMotionItems.forEach((item, index) => {
-    if (index === 0) {
-      timeline.to(
-        item,
-        {
-          zIndex: featureMotionItems.length + 1,
-          "--feature-opacity": 1,
-          "--feature-blur": "0px",
-          "--feature-photo-y": "0px",
-          "--feature-copy-y": "0px",
-          "--feature-stack-y": "0vh",
-          duration: 0.45,
-          ease: "none",
-        },
-        0,
-      );
-    } else {
-      timeline.to(
-        item,
-        {
-          zIndex: featureMotionItems.length + 1,
-          "--feature-opacity": 1,
-          "--feature-blur": "0px",
-          "--feature-photo-y": "0px",
-          "--feature-copy-y": "0px",
-          "--feature-stack-y": "0vh",
-          duration: 0.62,
-          ease: "power2.out",
-        },
-        index - 0.34,
-      );
-    }
+      if (index < featureMotionItems.length - 1) {
+        featureMotionTimeline.to(
+          item,
+          {
+            "--feature-opacity": 0,
+            "--feature-blur": "14px",
+            "--feature-photo-y": "-56px",
+            "--feature-copy-y": "-44px",
+            "--feature-stack-y": "-9vh",
+            duration: 0.48,
+            ease: "power1.in",
+          },
+          index + 0.5,
+        );
+      }
+    });
+  };
 
-    if (index < featureMotionItems.length - 1) {
-      timeline.to(
-        item,
-        {
-          "--feature-opacity": 0,
-          "--feature-blur": "14px",
-          "--feature-photo-y": "-56px",
-          "--feature-copy-y": "-44px",
-          "--feature-stack-y": "-9vh",
-          duration: 0.48,
-          ease: "power1.in",
-        },
-        index + 0.5,
-      );
-    }
-  });
+  desktopFeatureMotionQuery.addEventListener("change", syncFeatureMotion);
+  syncFeatureMotion();
 };
 
 const setupGsapScroll = () => {
@@ -264,6 +284,9 @@ const setupGsapScroll = () => {
       item.style.setProperty("--feature-copy-y", "0px");
       item.style.setProperty("--feature-stack-y", "0vh");
     });
+    updateFloatingContactCta();
+    window.addEventListener("scroll", () => updateFloatingContactCta(), { passive: true });
+    window.addEventListener("resize", () => updateFloatingContactCta());
     updateActiveNavigation();
     return;
   }
@@ -277,11 +300,7 @@ const setupGsapScroll = () => {
     onUpdate: (self) => {
       if (meter) meter.style.transform = `scaleX(${self.progress})`;
       header?.classList.toggle("is-scrolled", self.scroll() > 20);
-      const hasPassedHero = hero ? self.scroll() > hero.offsetHeight * 0.82 : self.scroll() > 500;
-      const isNearContact = contactSection
-        ? self.scroll() + window.innerHeight * 0.55 >= contactSection.offsetTop
-        : false;
-      backToTop?.classList.toggle("is-visible", hasPassedHero && !isNearContact);
+      updateFloatingContactCta(self.scroll());
       updateActiveNavigation();
     },
   });
@@ -370,7 +389,7 @@ initPreviewAuth();
 initNavigation();
 initContactForm();
 initHeroCarousel();
-initBackToTop();
+initFloatingContactCta();
 setupGsapScroll();
 setupSmoothScroll();
 
